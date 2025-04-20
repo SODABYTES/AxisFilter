@@ -66,20 +66,17 @@ public partial class AxisFilter : Godot.GodotObject
 	}
 	
 	private static Vector2 _ConvertCrossToSquare(Vector2 stick){
-		/*
-		The current method for converting into a square deadzone is, frankly,
-		not very accurate and should be reworked.
-		*/
 		const float magic = 0.707106781186548f; //(float)(Math.Sqrt(2) / 2);
-		float diagonal = (float)Math.Abs(Math.Sin(stick.Angle() * 2));
+		float lerpFactor = (float)Math.Abs(Math.Cos(stick.Angle() * 2));
 		
 		Vector2 stickMagic = new Vector2(0,0);
 		stickMagic.X = stick.X / magic;
 		stickMagic.Y = stick.Y / magic;
 		
 		Vector2 result = new Vector2(0,0);
-		result.X = Mathf.Clamp(Mathf.Lerp(stick.X, stickMagic.X, diagonal), -1, 1);
-		result.Y = Mathf.Clamp(Mathf.Lerp(stick.Y, stickMagic.Y, diagonal), -1, 1);
+		result.X = Mathf.Clamp(Mathf.Lerp(stick.X, stickMagic.X, 1 - lerpFactor), -1, 1);
+		result.Y = Mathf.Clamp(Mathf.Lerp(stick.Y, stickMagic.Y, 1 - lerpFactor), -1, 1);
+		
 		return result;
 	}
 }
