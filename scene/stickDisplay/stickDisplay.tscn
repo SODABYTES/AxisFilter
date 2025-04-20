@@ -1,0 +1,265 @@
+[gd_scene load_steps=8 format=3 uid="uid://dslopqikxc0g8"]
+
+[ext_resource type="Shader" uid="uid://bvo473xo1igtw" path="res://scene/stickDisplay/stickDisplayShader.gdshader" id="1_x5w71"]
+[ext_resource type="Texture2D" uid="uid://b6wrhyun8he0l" path="res://scene/stickDisplay/stickDisplayTex.png" id="2_34tuv"]
+[ext_resource type="Script" uid="uid://vgty5lbuskd7" path="res://scene/stickDisplay/stickDisplay.gd" id="2_novlm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_novlm"]
+shader = ExtResource("1_x5w71")
+
+[sub_resource type="Gradient" id="Gradient_34tuv"]
+offsets = PackedFloat32Array(0.75, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_novlm"]
+gradient = SubResource("Gradient_34tuv")
+width = 8
+
+[sub_resource type="Theme" id="Theme_34tuv"]
+default_font_size = 32
+
+[node name="StickDisplay" type="Node2D"]
+texture_filter = 4
+material = SubResource("ShaderMaterial_novlm")
+script = ExtResource("2_novlm")
+
+[node name="CircleGate" type="Node2D" parent="."]
+modulate = Color(0.25, 1, 1, 1)
+use_parent_material = true
+
+[node name="Sprite1" type="Sprite2D" parent="CircleGate"]
+use_parent_material = true
+position = Vector2(-64, -96)
+texture = ExtResource("2_34tuv")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 64)
+region_filter_clip_enabled = true
+
+[node name="Sprite2" type="Sprite2D" parent="CircleGate"]
+use_parent_material = true
+position = Vector2(64, -96)
+texture = ExtResource("2_34tuv")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 64)
+region_filter_clip_enabled = true
+
+[node name="Sprite3" type="Sprite2D" parent="CircleGate"]
+use_parent_material = true
+position = Vector2(-96, -32)
+rotation = 1.5708
+texture = ExtResource("2_34tuv")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 64)
+region_filter_clip_enabled = true
+
+[node name="Sprite4" type="Sprite2D" parent="CircleGate"]
+use_parent_material = true
+position = Vector2(96, -32)
+rotation = 1.5708
+texture = ExtResource("2_34tuv")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 64)
+region_filter_clip_enabled = true
+
+[node name="Sprite5" type="Sprite2D" parent="CircleGate"]
+use_parent_material = true
+position = Vector2(-96, 32)
+rotation = 1.5708
+texture = ExtResource("2_34tuv")
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 64)
+region_filter_clip_enabled = true
+
+[node name="Sprite6" type="Sprite2D" parent="CircleGate"]
+use_parent_material = true
+position = Vector2(96, 32)
+rotation = 1.5708
+texture = ExtResource("2_34tuv")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 64)
+region_filter_clip_enabled = true
+
+[node name="Sprite7" type="Sprite2D" parent="CircleGate"]
+use_parent_material = true
+position = Vector2(-64, 96)
+texture = ExtResource("2_34tuv")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 64)
+region_filter_clip_enabled = true
+
+[node name="Sprite8" type="Sprite2D" parent="CircleGate"]
+use_parent_material = true
+position = Vector2(64, 96)
+texture = ExtResource("2_34tuv")
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 64)
+region_filter_clip_enabled = true
+
+[node name="SquareGate" type="Node2D" parent="."]
+visible = false
+modulate = Color(0.25, 1, 1, 1)
+use_parent_material = true
+
+[node name="Sprite1" type="Sprite2D" parent="SquareGate"]
+use_parent_material = true
+position = Vector2(-64, -96)
+texture = ExtResource("2_34tuv")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(128, 0, 128, 64)
+
+[node name="Sprite2" type="Sprite2D" parent="SquareGate"]
+use_parent_material = true
+position = Vector2(64, -96)
+texture = ExtResource("2_34tuv")
+region_enabled = true
+region_rect = Rect2(128, 0, 128, 64)
+
+[node name="Sprite3" type="Sprite2D" parent="SquareGate"]
+use_parent_material = true
+position = Vector2(-96, 0)
+rotation = 1.5708
+scale = Vector2(2, 1)
+texture = ExtResource("2_34tuv")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(128, 0, 64, 64)
+
+[node name="Sprite4" type="Sprite2D" parent="SquareGate"]
+use_parent_material = true
+position = Vector2(96, 0)
+rotation = 1.5708
+scale = Vector2(2, 1)
+texture = ExtResource("2_34tuv")
+region_enabled = true
+region_rect = Rect2(128, 0, 64, 64)
+
+[node name="Sprite5" type="Sprite2D" parent="SquareGate"]
+use_parent_material = true
+position = Vector2(-64, 96)
+texture = ExtResource("2_34tuv")
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(128, 0, 128, 64)
+
+[node name="Sprite6" type="Sprite2D" parent="SquareGate"]
+use_parent_material = true
+position = Vector2(64, 96)
+texture = ExtResource("2_34tuv")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(128, 0, 128, 64)
+
+[node name="StickPosition" type="Node2D" parent="."]
+use_parent_material = true
+scale = Vector2(0.25, 0.25)
+
+[node name="Sprite1" type="Sprite2D" parent="StickPosition"]
+use_parent_material = true
+position = Vector2(-16, -16)
+texture = ExtResource("2_34tuv")
+region_enabled = true
+region_rect = Rect2(0, 64, 32, 32)
+region_filter_clip_enabled = true
+
+[node name="Sprite2" type="Sprite2D" parent="StickPosition"]
+use_parent_material = true
+position = Vector2(16, -16)
+texture = ExtResource("2_34tuv")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 64, 32, 32)
+region_filter_clip_enabled = true
+
+[node name="Sprite3" type="Sprite2D" parent="StickPosition"]
+use_parent_material = true
+position = Vector2(-16, 16)
+texture = ExtResource("2_34tuv")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 64, 32, 32)
+region_filter_clip_enabled = true
+
+[node name="Sprite4" type="Sprite2D" parent="StickPosition"]
+use_parent_material = true
+position = Vector2(16, 16)
+texture = ExtResource("2_34tuv")
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 64, 32, 32)
+region_filter_clip_enabled = true
+
+[node name="StickPositionPrevious" type="Node2D" parent="."]
+use_parent_material = true
+scale = Vector2(0.25, 0.25)
+
+[node name="Sprite1" type="Sprite2D" parent="StickPositionPrevious"]
+use_parent_material = true
+position = Vector2(-16, -16)
+texture = ExtResource("2_34tuv")
+region_enabled = true
+region_rect = Rect2(0, 64, 32, 32)
+region_filter_clip_enabled = true
+
+[node name="Sprite2" type="Sprite2D" parent="StickPositionPrevious"]
+use_parent_material = true
+position = Vector2(16, -16)
+texture = ExtResource("2_34tuv")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 64, 32, 32)
+region_filter_clip_enabled = true
+
+[node name="Sprite3" type="Sprite2D" parent="StickPositionPrevious"]
+use_parent_material = true
+position = Vector2(-16, 16)
+texture = ExtResource("2_34tuv")
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 64, 32, 32)
+region_filter_clip_enabled = true
+
+[node name="Sprite4" type="Sprite2D" parent="StickPositionPrevious"]
+use_parent_material = true
+position = Vector2(16, 16)
+texture = ExtResource("2_34tuv")
+flip_h = true
+flip_v = true
+region_enabled = true
+region_rect = Rect2(0, 64, 32, 32)
+region_filter_clip_enabled = true
+
+[node name="Streak" type="TextureRect" parent="."]
+offset_top = -8.0
+offset_right = 256.0
+offset_bottom = 8.0
+pivot_offset = Vector2(0, 8)
+texture = SubResource("GradientTexture1D_novlm")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.75)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = 144.0
+offset_right = 256.0
+offset_bottom = 272.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_34tuv")
+text = "Among us"
+horizontal_alignment = 1

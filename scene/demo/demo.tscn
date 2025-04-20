@@ -1,0 +1,114 @@
+[gd_scene load_steps=14 format=3 uid="uid://bt7navjxo8ion"]
+
+[ext_resource type="PackedScene" uid="uid://dslopqikxc0g8" path="res://scene/stickDisplay/stickDisplay.tscn" id="1_j168r"]
+[ext_resource type="Script" uid="uid://c6dsaefdsnaw3" path="res://scene/demo/demo.gd" id="1_t1hgl"]
+[ext_resource type="Texture2D" uid="uid://cpnbq72y4jk21" path="res://scene/demo/particleTexture.png" id="2_vfh2h"]
+
+[sub_resource type="Gradient" id="Gradient_j168r"]
+colors = PackedColorArray(0, 0, 0, 1, 0.187, 0, 0.25, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t1hgl"]
+gradient = SubResource("Gradient_j168r")
+width = 2
+height = 8
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Curve" id="Curve_28loo"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.25, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_lhsux"]
+curve = SubResource("Curve_28loo")
+
+[sub_resource type="Gradient" id="Gradient_vfh2h"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_28loo"]
+gradient = SubResource("Gradient_vfh2h")
+
+[sub_resource type="Curve" id="Curve_vfh2h"]
+_data = [Vector2(0, 0.125), 0.0, 0.25, 0, 0, Vector2(0.875, 0.25), 0.75, 0.75, 0, 0, Vector2(1, 1), 5.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_28loo"]
+curve = SubResource("Curve_vfh2h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_anx5h"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 512, 0)
+emission_shape = 3
+emission_box_extents = Vector3(960, 384, 1)
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(0, -1, 0)
+initial_velocity_max = 1024.0
+gravity = Vector3(0, -128, 0)
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_28loo")
+color = Color(1, 1, 1, 0.5)
+color_ramp = SubResource("GradientTexture1D_28loo")
+alpha_curve = SubResource("CurveTexture_lhsux")
+turbulence_enabled = true
+turbulence_noise_strength = 8.0
+turbulence_noise_scale = 8.0
+turbulence_noise_speed = Vector3(0, 64, 0)
+turbulence_influence_min = 0.05
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vfh2h"]
+blend_mode = 2
+
+[node name="Demo" type="CanvasLayer"]
+script = ExtResource("1_t1hgl")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_t1hgl")
+expand_mode = 1
+
+[node name="Anchor" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Anchor"]
+amount = 1024
+texture = ExtResource("2_vfh2h")
+lifetime = 4.0
+randomness = 1.0
+visibility_rect = Rect2(-1024, -512, 2048, 1024)
+process_material = SubResource("ParticleProcessMaterial_anx5h")
+
+[node name="DisplayRaw" parent="Anchor" instance=ExtResource("1_j168r")]
+position = Vector2(0, -192)
+scale = Vector2(0.75, 0.75)
+gateName = "Raw input"
+
+[node name="DisplayCircle" parent="Anchor" instance=ExtResource("1_j168r")]
+position = Vector2(-384, 144)
+gateName = "Circle deadzone"
+
+[node name="DisplayCross" parent="Anchor" instance=ExtResource("1_j168r")]
+position = Vector2(384, 144)
+gateName = "Cross deadzone"
+
+[node name="DisplaySquare" parent="Anchor" instance=ExtResource("1_j168r")]
+position = Vector2(0, 144)
+square = true
+gateName = "Square deadzone"
+
+[node name="Fade" type="ColorRect" parent="."]
+material = SubResource("CanvasItemMaterial_vfh2h")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
